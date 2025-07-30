@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
@@ -8,7 +7,13 @@ function Navbar() {
       padding: "1rem",
       display: "flex",
       justifyContent: "center",
-      gap: "2rem"
+      gap: "2rem",
+      position: "sticky",
+      top: 0, 
+      left: 0, 
+      width: "100%",
+      zIndex: 1000,
+      marginBottom: 1
     }}>
       <Link to="/" style={{ color: "white", textDecoration: "none" }}>Home</Link>
       <Link to="/calculator" style={{ color: "white", textDecoration: "none" }}>Calculator</Link>
