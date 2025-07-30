@@ -15,6 +15,7 @@ function Navbar() {
       zIndex: 1000,
       marginBottom: 1
     }}>
+      (green-app-navbar)
       <Link to="/" style={{ color: "white", textDecoration: "none" }}>Home</Link>
       <Link to="/calculator" style={{ color: "white", textDecoration: "none" }}>Calculator</Link>
     </nav>
