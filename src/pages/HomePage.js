@@ -1,6 +1,13 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import actions from "../redux/actions/actions";
 
-function HomePage({ color = "green" }) {
+function HomePage({ 
+  color = "green",
+  incrementCounter,
+  decrementCounter,
+  counter
+}) {
   const [message, setMessage] = useState("");
 
   const sendMessage = () => {
@@ -59,8 +66,48 @@ function HomePage({ color = "green" }) {
       >
         Send to Red
       </button>
+      <button
+        onClick={()=>incrementCounter(counter)}
+        style={{
+          padding: "10px 20px",
+          fontSize: "1rem",
+          backgroundColor: "white",
+          color: color,
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          transition: "background-color 0.2s ease"
+        }}
+      >
+        Increment Counter
+      </button>
+      <button
+        onClick={()=>decrementCounter(counter)}
+        style={{
+          padding: "10px 20px",
+          fontSize: "1rem",
+          backgroundColor: "white",
+          color: color,
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          transition: "background-color 0.2s ease"
+        }}
+      >
+        Decrement Counter
+      </button>
+      <h2>{counter}</h2>
     </div>
   );
 }
 
-export default HomePage;
+const mapStateToProps = (state) => ({
+  counter: state.counter
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  incrementCounter: (counter)=> dispatch(actions.incrementCounter(counter)),
+  decrementCounter: (counter)=> dispatch(actions.decrementCounter(counter)),
+})  
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
