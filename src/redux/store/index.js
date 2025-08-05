@@ -1,10 +1,3 @@
-import { createStore, applyMiddleware } from 'redux';
-import { thunk } from 'redux-thunk';
-import rootReducer from 'red-green-shared-state/reducers/userReducer';
-
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk) 
-);
+const store = window.__REDUX_SHARED_STORE__
 
 export default store;

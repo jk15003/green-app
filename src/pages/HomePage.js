@@ -96,7 +96,7 @@ function HomePage({
       >
         Decrement Counter
       </button>
-      <h2>{counter}</h2>
+      <h2>Counter number(from green's reducer):{counter}</h2>
     </div>
   );
 }
