@@ -4,16 +4,45 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
+// Allowed host URLs for access
+const allowedUrls = [
+  "https://red-app-chi.vercel.app",
+  "https://red-app-two.vercel.app"
+];
+
 class GreenApp extends HTMLElement {
   connectedCallback() {
     const color = this.getAttribute("color") || "green";
-    
+
+    const appUrl = store.getState().appUrl;
+
+    if (!allowedUrls.includes(appUrl)) {
+      this.innerHTML = `
+        <div style="
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          justify-content:center;
+          height:100vh;
+          font-family:sans-serif;
+          background:#111;
+          color:#fff;
+          text-align:center;
+        ">
+          <h1>🚫 Access Denied</h1>
+          <p>This application is not authorized for this host.</p>
+        </div>
+      `;
+      return; // do not render React app
+    }
+
     const root = ReactDOM.createRoot(this);
     root.render(
       <Provider store={store}>
-        <App color={color}/>
-      </Provider>,
+        <App color={color} />
+      </Provider>
     );
   }
 }
+
 customElements.define("green-app", GreenApp);
