@@ -5,11 +5,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 // Allowed host URLs for access
-const allowedUrls = [
-  "https://red-app-chi.vercel.app",
-  "https://red-app-two.vercel.app"
-];
-
+const allowedUrls = process.env.REACT_APP_ALLOWED_URLS?.split(",") || [];
 class GreenApp extends HTMLElement {
   connectedCallback() {
     const color = this.getAttribute("color") || "green";
