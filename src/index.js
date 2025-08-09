@@ -17,22 +17,24 @@ class GreenApp extends HTMLElement {
     const appUrl = store.getState().appUrl;
 
     if (!allowedUrls.includes(appUrl)) {
-      this.innerHTML = `
-        <div style="
-          display:flex;
-          flex-direction:column;
-          align-items:center;
-          justify-content:center;
-          height:100vh;
-          font-family:sans-serif;
-          background:#111;
-          color:#fff;
-          text-align:center;
-        ">
+      const root = ReactDOM.createRoot(this);
+      root.render(
+         <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          fontFamily: "sans-serif",
+          background: "#111",
+          color: "#fff",
+          textAlign: "center"
+        }}>
           <h1>🚫 Access Denied</h1>
           <p>This application is not authorized for this host.</p>
         </div>
-      `;
+      );
+
       return; // do not render React app
     }
 
